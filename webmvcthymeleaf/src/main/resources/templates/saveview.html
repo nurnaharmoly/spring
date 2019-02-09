@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<span style="color: darkslategrey; font-weight:900"  th:text="${successMge}"></span>
+<form th:object="${save}" action="#" th:action="@{/add}" th:method="POST">
+   <table>
+       <tr>
+           <td>Name</td>
+           <td><input type="text" th:field="*{name}"/></td>
+           <td th:class="err" th:if="${#fields.hasErrors('name')}" th:errors="*(name)"></td>
+       </tr>
+
+       <tr>
+           <td>Age</td>
+           <td><input type="text" th:field="*{age}"/></td>
+           <td th:class="err" th:if="${#fields.hasErrors('age')}" th:errors="*(age)"></td>
+       </tr>
+
+       <tr>
+           <td>Email</td>
+           <td><input type="text" th:field="*{email}"/></td>
+           <td th:class="err" th:if="${#fields.hasErrors('email')}" th:errors="*(email)"></td>
+       </tr>
+   </table>
+    <button type="submit">save</button>
+</form>
+<a th:href="@{/}">Home</a>
+</body>
+</html>

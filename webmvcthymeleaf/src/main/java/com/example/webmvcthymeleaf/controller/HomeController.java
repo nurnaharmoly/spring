@@ -15,26 +15,26 @@ public class HomeController {
     @Autowired
     private UserRepo repo;
 
-    @GetMapping(value = "/")
-    public ModelAndView index(){
-        ModelAndView mv = new ModelAndView();
-        mv.addObject("user", new User());
-        mv.setViewName("index");
-        return mv;
-
-    }
-@PostMapping(value = "/")
-    public ModelAndView add(@Valid User user){
-        ModelAndView mv = new ModelAndView();
-
-        if(user.getName() != null){
-            this.repo.save(user);
-            System.out.println("Successful");
-            mv.addObject("successMasg", "Successfuly save");
-            mv.addObject("user", new User());
-        }
-        mv.setViewName("index");
-        return mv;
-
-    }
+//    @GetMapping(value = "/")
+//    public ModelAndView index(){
+//        ModelAndView mv = new ModelAndView();
+//        mv.addObject("user", new User());
+//        mv.setViewName("index");
+//        return mv;
+//
+//    }
+//@PostMapping(value = "/")
+//    public ModelAndView add(@Valid User user){
+//        ModelAndView mv = new ModelAndView();
+//
+//        if(user.getName() != null){
+//            this.repo.save(user);
+//            System.out.println("Successful");
+//            mv.addObject("successMasg", "Successfuly save");
+//            mv.addObject("user", new User());
+//        }
+//        mv.setViewName("index");
+//        return mv;
+//
+//    }
 }

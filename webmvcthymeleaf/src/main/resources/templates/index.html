@@ -1,18 +1,31 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
+    <title>Title</title>
 </head>
 <body>
-<h3>Hello Wrold</h3>
-<span style="color: darkslategrey; font-weight:900"  th:text="${successMasg}"></span>
-<form th:object="${user}" th:action="@{/}" th:method="POST">
-   Name <input th:field="*{name}"/><br/>
-    UserName <input th:field="*{userName}"/><br/>
-    Password <input th:field="*{password}"/><br/>
-    <button type="submit">save</button>
-</form>
+<a th:href=""@{/add}">Add User</a>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Email</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    <tr th:each="u : ${list}">
+    <td th:text="${u.id}"></td>
+    <td th:text="${u.name}"></td>
+    <td th:text="${u.age}"></td>
+    <td th:text="${u.email}"></td>
+    <td><a th:href="@{'/edit/' + ${u.id}"></a></td>
+
+
+    </tr>
+</table>
+
 </body>
 </html>
