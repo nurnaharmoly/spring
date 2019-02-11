@@ -14,9 +14,11 @@
     </style>
 </head>
 <body>
-<span th:class="success" th:text="${succMsg}"></span>
-<form th:action="@{/add}" th:object="${student}" method="post" enctype="multipart/form-data">
+
+<form th:action="@{/edit/} + ${id}" th:object="${student}" method="post" enctype="multipart/form-data">
     <table>
+        <input type="hidden" th:field="*{id}" th:value="${student.id}"/>
+        <input type="hidden" th:field="*{regiDate}" th:value="${student.regiDate}"/>
         <tr>
             <td>Name</td>
             <td><input type="text" th:field="*{name}"/></td>
@@ -32,7 +34,7 @@
         <tr>
             <td>Email</td>
             <td><input type="email" th:field="*{email}"/></td>
-            <td th:class="err" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Error Email</td>
+            <td th:class="err" th:if="${#fields.hasErrors('email')}" th:errors="*{'email'}">Error Email</td>
         </tr>
 
         <tr>
@@ -42,7 +44,7 @@
                 Java <input type="checkbox" th:value="java" th:field="*{courseComplete}"/>
                 Xml <input type="checkbox" th:value="xml" th:field="*{courseComplete}"/>
             </td>
-            <td th:class="err" th:if="${#fields.hasErrors('courseComplete')}" th:errors="*{courseComplete}">Error
+            <td th:class="err" th:if="${#fields.hasErrors('courseComplete')}" th:errors="*{'courseComplete'}">Error
                 Course Complete
             </td>
         </tr>
@@ -53,7 +55,7 @@
                 Male <input type="radio" th:value="male" th:field="*{gender}"/>
                 Female <input type="radio" th:value="female" th:field="*{gender}"/>
             </td>
-            <td th:class="err" th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}">Error Gender</td>
+            <td th:class="err" th:if="${#fields.hasErrors('gender')}" th:errors="*{'gender'}">Error Gender</td>
         </tr>
 
         <tr>
@@ -61,13 +63,12 @@
 
             <td>
                 <select th:field="*{round}">
-                    <option th:value="fine">Select the Round</option>
                     <option th:value="Round_36">Round_36</option>
                     <option th:value="Round_37">Round_37</option>
                     <option th:value="Round_38">Round_38</option>
                 </select>
             </td>
-            <td th:class="err" th:if="${#fields.hasErrors('round')}" th:errors="*{round}">Error Round</td>
+            <td th:class="err" th:if="${#fields.hasErrors('round')}" th:errors="*{'round'}">Error Round</td>
         </tr>
 
 
