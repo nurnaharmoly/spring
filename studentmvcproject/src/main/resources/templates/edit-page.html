@@ -15,7 +15,7 @@
 </head>
 <body>
 
-<form th:action="@{/edit/} + ${id}" th:object="${student}" method="post" enctype="multipart/form-data">
+<form th:action="@{/edit/} + ${id}" th:object="${student}" method="post">
     <table>
         <input type="hidden" th:field="*{id}" th:value="${student.id}"/>
         <input type="hidden" th:field="*{regiDate}" th:value="${student.regiDate}"/>
@@ -86,9 +86,10 @@
 
 
         <tr>
-            <td><input type="submit" value="Submit"/></td>
+            <td><button type="submit">Submit</button></td>
         </tr>
     </table>
 </form>
+<a th:href = "@{/}">Home</a>
 </body>
 </html>

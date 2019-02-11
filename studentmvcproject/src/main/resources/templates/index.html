@@ -26,7 +26,7 @@
             <a class="btn" th:href="@{/add}" >Add User</a>
         </div>
     </div>
-<table>
+<table class="table table-striped">
     <tr>
         <th>ID</th>
         <th>Name</th>
@@ -58,5 +58,6 @@
         <td><a th:href="@{'/del/' + ${u.id}}"></a>Del</td>
     </tr>
 </table>
+</div>
 </body>
 </html>

@@ -20,13 +20,22 @@ import java.util.Date;
 @Controller
 public class StudentController {
 
-    private static String UPLOADED_FOLDER = "D:/My Git/spring/studentmvcproject/src/main/resources/static/images/ ";
+    private static String UPLOADED_FOLDER = "src/main/resources/static/images/ ";
 
     @Autowired
     private ImageOptimizer imageOptimizer;
 
     @Autowired
     private StudentRepo repo;
+
+    @GetMapping(value = "/")
+    public String index(Model model){
+        model.addAttribute("list", this.repo.findAll());
+        this.repo.findAll().forEach((c) -> {
+            System.out.println(c.toString());
+        });
+        return "index";
+    }
 
     @GetMapping("/add")
     public String showFrom(Student student){
@@ -82,14 +91,7 @@ public class StudentController {
         return "redirect:/";
         }
 
-        @GetMapping(value = "/")
-    public String index(Model model){
-        model.addAttribute("list", this.repo.findAll());
-        this.repo.findAll().forEach((c) -> {
-            System.out.println(c.toString());
-        });
-        return "index";
-        }
+
 
         @GetMapping(value = "/del/{id}")
     public String delete(@PathVariable("id") Long id){
