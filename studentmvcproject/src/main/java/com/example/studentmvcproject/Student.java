@@ -8,6 +8,7 @@ import javax.validation.constraints.*;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "stu")
@@ -55,6 +56,15 @@ public class Student {
     private String fileName;
     private String filePath;
     private String fileExtension;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "stu_role",
+            joinColumns = @JoinColumn(name = "stu_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+
+    private Set<Role> roles;
 
 
     public Long getId() {
@@ -170,6 +180,14 @@ public class Student {
 
     public void setFileExtension(String fileExtension) {
         this.fileExtension = fileExtension;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 
     public Student() {
