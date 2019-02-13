@@ -38,7 +38,8 @@ public class StudentController {
     }
 
     @GetMapping("/add")
-    public String showFrom(Student student){
+    public String showFrom(Student student, Model model){
+
         return "add-page";
     }
 
