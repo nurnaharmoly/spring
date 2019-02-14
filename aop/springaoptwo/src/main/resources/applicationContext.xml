@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+
+    <bean id="simpleService" class="com.example.springaoptwo.Employee">
+        <property name="name" value="Hello"/>
+        <property name="id" value="12345"/>
+    </bean>
+
+
+    <bean id="doBeforMethodBean" class="com.example.springaoptwo.DoBeforMethod">
+    </bean>
+
+    <bean id="doAfterReturningMethodBean" class="com.example.springaoptwo.DoAfterReturningMethod">
+    </bean>
+
+    <bean id="simpleServiceProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="target" ref="simpleService"/>
+        <property name="interceptorNames">
+            <list>
+                <value>doBeforMethodBean</value>
+                <value>doAfterReturningMethodBean</value>
+            </list>
+        </property>
+    </bean>
+</beans>

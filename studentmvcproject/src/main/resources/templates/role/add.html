@@ -15,12 +15,12 @@
 </head>
 <body>
 <span th:class="success" th:text="${successMsg}"></span>
-<form  th:object="${role}" method="post" th:action="@{/add-role}">
+<form  th:object="${role}"  th:action="@{/add-role}" th:method="POST">
 <table>
     <tr>
         <td>Name</td>
-        <td><input type="text" th:field{="*{roleName}"/></td>
-        <td th:class="err" th:if="${#fields.hasErrors('roleName')}" th:error="*{roleName}">Name Error</td>
+        <td><input type="text" th:field="*{roleName}"/></td>
+        <td th:class="err" th:if="${#fields.hasErrors('roleName')}" th:errors="*{roleName}">Error Rolename</td>
         <span th:class="err" th:text="${exisMsg}"></span>
     </tr>
 

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+
+    <bean id="employeeBeen" class="com.example.springaopthree.Employee">
+        <property name="name" value="Hello"/>
+        <property name="id" value="12345"/>
+    </bean>
+
+
+    <bean id="doBeforMethodBean" class="com.example.springaopthree.DoBeforMethod">
+        </bean>
+
+    <bean id="doAfterReturningMethod" class="com.example.springaopthree.DoAfterReturningMethod">
+    </bean>
+
+    <bean id="doAfterThrowingExceptionMethod" class="com.example.springaopthree.DoAfterThrowingExceptionMethod">
+    </bean>
+
+    <bean id="simpleServiceProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="target" ref="employeeBeen"/>
+        <property name="interceptorNames">
+        <list>
+            <value>doBeforMethodBean</value>
+            <value>doAfterReturningMethod</value>
+            <value>doAfterThrowingExceptionMethod</value>
+        </list>
+        </property>
+    </bean>
+</beans>

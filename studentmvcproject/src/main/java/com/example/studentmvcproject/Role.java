@@ -1,7 +1,7 @@
 package com.example.studentmvcproject;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotBlank;
 import java.util.Objects;
 
 @Entity
@@ -11,7 +11,7 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty(message = "Enter Role.........")
+    @NotBlank(message = "Enter Role.........")
     @Column(unique = true, name = "role_name")
     private String roleName;
 

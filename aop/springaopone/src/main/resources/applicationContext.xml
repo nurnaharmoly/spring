@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+
+    <bean id="employeeBeen" class="com.example.springaopone.Employee">
+        <property name="name" value="Hello"/>
+        <property name="id" value="12345"/>
+    </bean>
+
+
+    <bean id="doBeforMethodBean" class="com.example.springaopone.DoBeforMethod">
+        </bean>
+
+    <bean id="simpleServiceProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="target" ref="employeeBeen"/>
+        <property name="interceptorNames">
+        <list>
+            <value>doBeforMethodBean</value>
+        </list>
+        </property>
+    </bean>
+</beans>

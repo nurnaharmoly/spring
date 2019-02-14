@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
 
+
 @Controller
 public class RoleController {
     @Autowired
@@ -29,6 +30,7 @@ public class RoleController {
                 Role role1 = this.roleRepo.findByRoleName(role.getRoleName());
                 if (role1 != null) {
                     model.addAttribute("exisMsg", "Role Name is already Exist");
+                    role1=new Role();
                 } else {
                     this.roleRepo.save(role);
                     model.addAttribute("role", new Role());
