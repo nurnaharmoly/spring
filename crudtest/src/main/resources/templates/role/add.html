@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:action="@{/add-role}" th:object="${role}" method="post">
+<table>
+    <tr>
+        <td>Name</td>
+        <td><input type="text" th:field="*{roleName}"/></td>
+        <td th:if="${#fields.hasErrors('roleName')}" th:errors="*{roleName}" ></td>
+        <span th:text="${existMsg}"></span>
+    </tr>
+
+    <tr>
+        <td><button type="submit"> Save</button></td>
+    </tr>
+
+</table>
+</form>
+<a th:href="@{/role-list}">List</a>
+</body>
+</html>

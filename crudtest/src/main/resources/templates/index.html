@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:action="@{/add}" th:object="${user}" method="post">
+    <table>
+        <tr>
+            <td>Roles:</td>
+            <td><select th:field="*{roles}">
+                <option th:each="role : ${rolelist}" th:value="${role.id}"><span th:text="${role.roleName}"></span></option>
+            </select>
+
+            </td>
+
+        </tr>
+    </table>
+
+</form>
+
+</body>
+</html>
