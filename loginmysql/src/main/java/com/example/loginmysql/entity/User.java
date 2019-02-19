@@ -1,6 +1,9 @@
 package com.example.loginmysql.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Objects;
 import java.util.Set;
 
@@ -10,9 +13,17 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotNull
+    @Size(min = 2,max = 30,message = "Hey, Size must be between 2 and 30")
     private String name;
+
     private String userName;
     private String password;
+
+    @NotNull(message = "Enter An Email Address")
+    @Email
+    @Column(name = "email", unique = true)
     private String email;
     private boolean status;
 

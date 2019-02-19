@@ -20,6 +20,9 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableJpaRepositories(basePackageClasses = com.example.loginmysql.repo.UserRepo.class)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+    @Autowired
+    private LoggingAccessDeniedHandler accessDeniedHandler;
+
 
     @Autowired
     CustomUserDetailsService customUserDetailsService;
@@ -47,7 +50,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
                http.authorizeRequests()
                 .antMatchers("/", "/login","/public/**","/user-save","/role-save").permitAll()
-                .antMatchers("/sa/**").hasRole("SUPERADMIN")
+                .antMatchers("/sa/**", "/role/**","/user/**").hasRole("SUPERADMIN")
                 .antMatchers("/adm/**").hasRole("ADMIN")
                 .antMatchers("/u/**").hasRole("USER")
                 .antMatchers("/se/**").hasAnyRole("ADMIN","USER","SUPERADMIN")
@@ -63,7 +66,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .clearAuthentication(true)
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/login?logout")
-                .permitAll();
+                .permitAll()
+                .and()
+                .exceptionHandling()
+                .accessDeniedHandler(accessDeniedHandler);
     }
 
 
