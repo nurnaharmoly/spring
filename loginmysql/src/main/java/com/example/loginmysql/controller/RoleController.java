@@ -70,7 +70,7 @@ public class RoleController {
                     model.addAttribute("successMsg","Alread Success");
                 }           }
         }
-        return "redirect:role/role-list";
+        return "redirect:/role/role-list";
     }
 
     @RequestMapping(value = "/role-del/{id}",method = RequestMethod.GET)
@@ -81,7 +81,7 @@ public class RoleController {
     }
 
 
-    //    @Autowired
+//        @Autowired
 //    private RoleRepo repo;
 //
 //    @GetMapping(value = "/role-save")

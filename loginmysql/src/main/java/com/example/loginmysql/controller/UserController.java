@@ -100,7 +100,7 @@ public class UserController {
 
 
 
-    //    @Autowired
+//        @Autowired
 //    private UserRepo repo;
 //
 //    @Autowired
@@ -111,21 +111,21 @@ public class UserController {
 //    public void saveUser(){
 //        Set<Role> roles = new HashSet<>();
 //        roles.add(new Role(1L));
-//
-//        User user = new User("tuly", "sadmin",passwordEncoder.encode("1234"), "tuly@gmail.com", true, roles );
+//        roles.add(new Role(2L));
+//        User user = new User("Joni", "Joni",passwordEncoder.encode("1234"), "joni@gmail.com", true, roles );
 //        repo.save(user);
 //
 //        Set<Role> roles2 = new HashSet<>();
-//        roles.add(new Role(2L));
-//        User user2 = new User("Runa", "admin",passwordEncoder.encode("1234"), "runa@gmail.com", true, roles2 );
+//        roles2.add(new Role(3L));
+//        User user2 = new User("Fami", "Fami",passwordEncoder.encode("1234"), "fami@gmail.com", true, roles2 );
 //        repo.save(user2);
 //
 //        Set<Role> roles3 = new HashSet<>();
-//        roles3.add(new Role(3L));
-//        User user3 = new User("Piya", "user",passwordEncoder.encode("1234"), "piya@gmail.com", true, roles3 );
+//        roles3.add(new Role(2L));
+//        User user3 = new User("Piya", "Piya",passwordEncoder.encode("1234"), "piya@gmail.com", true, roles3 );
 //        repo.save(user3);
 //    }
-
+//
 
 
 }
