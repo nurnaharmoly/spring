@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Form</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+    <style type="text/css">
+        table {
+            width: 80%;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-10">
+            <h2>Our Spring MVC Creud App</h2>
+        </div>
+        <div class="col-2">
+            <a class="btn" th:href="@{/add}" >Add User</a>
+            <a class="btn" th:href="@{/role-list}" >Roles</a>
+        </div>
+    </div>
+
+<table class="table table-striped">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>UserName</th>
+        <th>Email</th>
+        <th>Password</th>
+        <th>Status</th>
+        <th>Role Name</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    <tr th:each="u : ${list}">
+        <td th:text="${u.id}"></td>
+        <td th:text="${u.name}"></td>
+        <td th:text="${u.userName}"></td>
+        <td th:text="${u.email}"></td>
+        <td th:text="${u.password}"></td>
+        <td th:text="${u.status}"></td>
+        <td>
+          <span  th:each="rr : ${u.roles}">
+               <span th:text="${rr.roleName}"></span>
+          </span>
+
+        </td>
+        <td><a th:href="@{'/user/edit/' + ${u.id}}">edit</a></td>
+        <td><a th:href="@{'/user/del/' + ${u.id}}">Del</a></td>
+    </tr>
+</table>
+</div>
+</body>
+</html>
