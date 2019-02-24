@@ -35,8 +35,8 @@ public class Role {
     public Role() {
     }
 
-    public Role(String roleName) {
-        this.roleName = roleName;
+    public Role(Long id) {
+        this.id = id;
     }
 
 

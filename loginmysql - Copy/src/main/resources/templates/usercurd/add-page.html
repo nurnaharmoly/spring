@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Form</title>
+    <style type="text/css">
+        .err{
+            color: red;
+        }
+        .succes{
+            color:green;
+        }
+    </style>
+</head>
+<body>
+<span th:class="succes" th:text="${successMsg}"></span>
+<form  th:action="@{/user/add}" th:object="${user}" method="post" enctype="multipart/form-data">
+    <table>
+        <tr>
+            <td>Roles:</td>
+            <td>
+                <select th:field="*{roles}" multiple>
+
+<option th:each="role : ${roleList}" th:value="${role.id}"><span th:text="${role.roleName}"></span></option>
+                </select>
+            </td>
+            <td th:class="err" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</td>
+        </tr>
+        <tr>
+            <td>Name:</td>
+            <td><input type="text" th:field="*{name}" /></td>
+            <td th:class="err" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</td>
+        </tr>
+        <tr>
+            <td>UserName:</td>
+            <td><input type="text" th:field="*{userName}" /></td>
+
+        </tr>
+        <tr>
+            <td>Email:</td>
+            <td><input type="email" th:field="*{email}" /></td>
+            <td th:class="err" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</td>
+        </tr>
+
+        <tr>
+            <td>Password:</td>
+            <td><input type="password" th:field="*{password}" /></td>
+        </tr>
+
+        <tr>
+            <td>Status:</td>
+            <td>True:<input type="radio" th:value="true" th:field="*{status}" />
+                False:<input type="radio" th:value="false" th:field="*{status}" /></td>
+        </tr>
+
+        <tr>
+            <td><input type="submit">Submit</input></td>
+        </tr>
+    </table>
+</form>
+
+<a th:href="@{/}">Home</a>
+</body>
+</html>

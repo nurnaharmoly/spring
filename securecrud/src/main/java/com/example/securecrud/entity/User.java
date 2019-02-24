@@ -15,7 +15,7 @@ public class User {
     private String email;
     private boolean status;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_role",
             joinColumns = @JoinColumn(name = "u_id"),
@@ -122,5 +122,16 @@ public class User {
     }
 
 
-
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", status=" + status +
+                ", roles=" + roles +
+                '}';
+    }
 }
