@@ -1,19 +1,45 @@
 package com.example.securecrud.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import java.util.Objects;
 import java.util.Set;
 
 @Entity
+@Table(name = "user")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
+
     private String name;
     private String userName;
+
+    @Column(name = "password")
+    @Transient
     private String password;
+
+    @Column(name = "email", nullable = false, unique = true)
+    @Email(message = "Please provide a valid e-mail")
+    @NotEmpty(message = "Please provide an e-mail")
     private String email;
-    private boolean status;
+
+    @Column(name = "first_name")
+    @NotEmpty(message = "Please provide your first name")
+    private String firstName;
+
+    @Column(name = "last_name")
+    @NotEmpty(message = "Please provide your last name")
+    private String lastName;
+
+
+    @Column(name = "enabled")
+    private boolean enabled;
+
+    @Column(name = "confirmation_token")
+    private String confirmationToken;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
@@ -52,6 +78,38 @@ public class User {
         return password;
     }
 
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public String getConfirmationToken() {
+        return confirmationToken;
+    }
+
+    public void setConfirmationToken(String confirmationToken) {
+        this.confirmationToken = confirmationToken;
+    }
+
     public void setPassword(String password) {
         this.password = password;
     }
@@ -64,13 +122,6 @@ public class User {
         this.email = email;
     }
 
-    public boolean isStatus() {
-        return status;
-    }
-
-    public void setStatus(boolean status) {
-        this.status = status;
-    }
 
     public Set<Role> getRoles() {
         return roles;
@@ -85,42 +136,22 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return status == user.status &&
+        return enabled == user.enabled &&
                 Objects.equals(id, user.id) &&
                 Objects.equals(name, user.name) &&
                 Objects.equals(userName, user.userName) &&
                 Objects.equals(password, user.password) &&
                 Objects.equals(email, user.email) &&
+                Objects.equals(firstName, user.firstName) &&
+                Objects.equals(lastName, user.lastName) &&
+                Objects.equals(confirmationToken, user.confirmationToken) &&
                 Objects.equals(roles, user.roles);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, userName, password, email, status, roles);
+        return Objects.hash(id, name, userName, password, email, firstName, lastName, enabled, confirmationToken, roles);
     }
-
-    public User() {
-    }
-
-
-    public User(User user) {
-        this.name = user.name;
-        this.userName = user.userName;
-        this.password = user.password;
-        this.email = user.email;
-        this.status = user.status;
-        this.roles = user.roles;
-    }
-
-    public User(String name, String userName, String password, String email, boolean status, Set<Role> roles) {
-        this.name = name;
-        this.userName = userName;
-        this.password = password;
-        this.email = email;
-        this.status = status;
-        this.roles = roles;
-    }
-
 
     @Override
     public String toString() {
@@ -130,8 +161,35 @@ public class User {
                 ", userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
-                ", status=" + status +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", enabled=" + enabled +
+                ", confirmationToken='" + confirmationToken + '\'' +
                 ", roles=" + roles +
                 '}';
+    }
+
+    public User(String name, String userName, String password, @Email(message = "Please provide a valid e-mail") @NotEmpty(message = "Please provide an e-mail") String email, @NotEmpty(message = "Please provide your first name") String firstName, @NotEmpty(message = "Please provide your last name") String lastName, boolean enabled, String confirmationToken, Set<Role> roles) {
+        this.name = name;
+        this.userName = userName;
+        this.password = password;
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.enabled = enabled;
+        this.confirmationToken = confirmationToken;
+        this.roles = roles;
+    }
+
+    public User(User user) {
+        this.name =user.name;
+        this.userName = user.userName;
+        this.password = user.password;
+        this.email = user.email;
+        this.firstName = user.firstName;
+        this.lastName = user.lastName;
+        this.enabled = user.enabled;
+        this.confirmationToken = user.confirmationToken;
+        this.roles = user.roles;
     }
 }
